@@ -10,6 +10,17 @@
   background-color: #eee;
 }
 
+.reset-button {
+  position: absolute;
+  background-color: rgb(112, 112, 112);
+  color: rgb(195, 195, 195);
+  right: 112px;
+  padding: 5px;
+  border-style: none;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
 .header {
   margin: 30px 0 25px;
   text-align: center;
@@ -21,7 +32,6 @@
 }
 
 .weapon-locker {
-  /* border: 2px solid red; */
   display: flex;
   justify-content: center;
 }
@@ -31,4 +41,14 @@
   padding: 5px;
   border-radius: 5px;
   margin: 20px;
+}
+
+.show-weapon-selected {
+  border: 3px solid black;
+  max-width: 100px;
+  margin: 0 auto;
+}
+
+.AI-selected {
+  color: blue;
 }
