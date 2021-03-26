@@ -11,25 +11,38 @@ const weaponOptions = {
   scissors: "scissors",
 };
 
-const randomNumber = function () {
-  return Math.floor(Math.random() * Math.floor(3));
+const computerWeapon = function () {
+  let randomNumber = Math.floor(Math.random() * Math.floor(3));
+
+  // FIX: sometimes generates error return
+  console.log(randomNumber);
+  switch (randomNumber) {
+    case 1:
+      return weaponOptions.rock;
+      break;
+    case 2:
+      return weaponOptions.paper;
+      break;
+    default:
+      return weaponOptions.scissors;
+  }
 };
 
-const showResult = function () {
+const showResult = function (playerWeapon) {
   weaponLocker.style.display = "none";
-  document.getElementById("battle-arena").style.display = "flex";
+  battleArena.style.display = "flex";
 
-  document.getElementById("player-weapon").innerText = `${randomNumber()}`;
-  document.getElementById("AI-weapon").innerText = `${randomNumber()}`;
+  console.log(`Weapon Selected: ${playerWeapon}`);
+  document.getElementById("player-weapon").innerText = `${playerWeapon}`;
+  document.getElementById("AI-weapon").innerText = `${computerWeapon()}`;
 };
 
 const activateGame = function (e) {
   e.preventDefault;
 
   let playerWeapon = e.target.id;
-  console.log(`Weapon Selected: ${playerWeapon}`);
 
-  showResult();
+  showResult(playerWeapon);
 };
 
 const resetGame = function (e) {
