@@ -36,6 +36,10 @@ body {
   font-style: italic;
 }
 
+.battle-arena {
+  display: none;
+}
+
 #weapon-locker {
   display: flex;
 }

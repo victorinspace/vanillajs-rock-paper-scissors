@@ -5,19 +5,31 @@
 //     - What did the computer pick?
 //     - What was the outcome?
 
-const generateAISelection = function () {
+const weaponOptions = {
+  rock: "rock",
+  paper: "paper",
+  scissors: "scissors",
+};
+
+const randomNumber = function () {
   return Math.floor(Math.random() * Math.floor(3));
+};
+
+const showResult = function () {
+  weaponLocker.style.display = "none";
+  document.getElementById("battle-arena").style.display = "flex";
+
+  document.getElementById("player-weapon").innerText = `${randomNumber()}`;
+  document.getElementById("AI-weapon").innerText = `${randomNumber()}`;
 };
 
 const activateGame = function (e) {
   e.preventDefault;
 
-  let playerSelectedWeapon = e.target.id;
+  let playerWeapon = e.target.id;
+  console.log(`Weapon Selected: ${playerWeapon}`);
 
-  console.log(`Weapon Selected: ${playerSelectedWeapon}`);
-
-  let gameTable = document.getElementById("weapon-locker");
-  gameTable.style.display = "none";
+  showResult();
 };
 
 const resetGame = function (e) {
@@ -25,21 +37,24 @@ const resetGame = function (e) {
 
   console.log("Game Reset");
 
-  let gameTable = document.getElementById("weapon-locker");
-
-  if (gameTable.style.display === "none") {
-    gameTable.style.display = "flex";
+  if (weaponLocker.style.display === "none") {
+    weaponLocker.style.display = "flex";
+    battleArena.style.display = "none";
   }
 };
 
-let rock = document.getElementById("rock");
+const rock = document.getElementById("rock");
 rock.addEventListener("click", activateGame);
 
-let paper = document.getElementById("paper");
+const paper = document.getElementById("paper");
 paper.addEventListener("click", activateGame);
 
-let scissors = document.getElementById("scissors");
+const scissors = document.getElementById("scissors");
 scissors.addEventListener("click", activateGame);
 
-let resetButton = document.getElementById("reset-button");
+const resetButton = document.getElementById("reset-button");
 resetButton.addEventListener("click", resetGame);
+
+const weaponLocker = document.getElementById("weapon-locker");
+
+const battleArena = document.getElementById("battle-arena");
