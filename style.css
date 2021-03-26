@@ -3,6 +3,10 @@
   margin: 0;
 }
 
+body {
+  background-color: black;
+}
+
 .content {
   max-width: 700px;
   margin: auto;
@@ -11,24 +15,29 @@
 }
 
 .reset-button {
-  position: absolute;
-  background-color: rgb(112, 112, 112);
-  color: rgb(195, 195, 195);
-  right: 112px;
-  padding: 5px;
+  background-color: rgb(224, 221, 0);
+  color: rgb(42, 42, 42);
+  padding: 5px 7px;
   border-style: none;
-  border: 2px solid black;
-  border-radius: 5px;
+  border: 1px solid rgb(109, 116, 25);
+  border-radius: 30px;
+  font-size: medium;
 }
 
 .header {
   margin: 30px 0 25px;
   text-align: center;
+  color: darkblue;
 }
 
 .instructions {
   margin-bottom: 40px;
   text-align: center;
+  font-style: italic;
+}
+
+#weapon-locker {
+  display: flex;
 }
 
 .weapon-locker {
