@@ -27,25 +27,33 @@ const computerWeapon = function () {
 };
 
 const checkWinCondition = function (playerWeapon, computerWeapon) {
+  matchResult.style.display = "block";
+
   if (playerWeapon == computerWeapon) {
-    console.log("TIE!");
+    matchResult.innerText = "TIE!";
   } else if (playerWeapon == "rock") {
     if (computerWeapon == "paper") {
       console.log("AI Wins!");
+      matchResult.innerText = "AI Wins!";
     } else {
       console.log("You Win!");
+      matchResult.innerText = "You Win!";
     }
   } else if (playerWeapon == "paper") {
     if (computerWeapon == "scissors") {
       console.log("AI Wins!");
+      matchResult.innerText = "AI Wins!";
     } else {
       console.log("You Win!");
+      matchResult.innerText = "You Win!";
     }
   } else if (playerWeapon == "scissors") {
     if (computerWeapon == "rock") {
       console.log("AI Wins!");
+      matchResult.innerText = "AI Wins!";
     } else {
       console.log("You Win!");
+      matchResult.innerText = "You Win!";
     }
   }
 };
@@ -80,6 +88,7 @@ const resetGame = function (e) {
   if (weaponLocker.style.display === "none") {
     weaponLocker.style.display = "flex";
     battleArena.style.display = "none";
+    matchResult.style.display = "none";
   }
 };
 
@@ -98,3 +107,5 @@ resetButton.addEventListener("click", resetGame);
 const weaponLocker = document.getElementById("weapon-locker");
 
 const battleArena = document.getElementById("battle-arena");
+
+const matchResult = document.getElementById("match-result");
