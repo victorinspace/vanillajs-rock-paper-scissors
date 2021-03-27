@@ -1,6 +1,4 @@
 // TODO:
-// - Provide player feedback:
-//     - What was the outcome?
 // - Remove global variables:
 //     - Use IFEE?
 
