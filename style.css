@@ -67,3 +67,7 @@ body {
 .AI-selected {
   color: blue;
 }
+
+#match-result {
+  display: none;
+}
