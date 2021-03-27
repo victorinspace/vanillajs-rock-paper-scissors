@@ -1,9 +1,8 @@
 // TODO:
-// - Generate AI response / weapon select
 // - Provide player feedback:
-//     - What did they pick?
-//     - What did the computer pick?
 //     - What was the outcome?
+// - Remove global variables:
+//     - Use IFEE?
 
 const weaponOptions = {
   rock: "rock",
@@ -14,7 +13,6 @@ const weaponOptions = {
 const computerWeapon = function () {
   let randomNumber = Math.floor(Math.random() * Math.floor(3));
 
-  // FIX: sometimes generates error return
   console.log(randomNumber);
   switch (randomNumber) {
     case 1:
@@ -28,13 +26,42 @@ const computerWeapon = function () {
   }
 };
 
-const showResult = function (playerWeapon) {
+const checkWinCondition = function (playerWeapon, computerWeapon) {
+  if (playerWeapon == computerWeapon) {
+    console.log("TIE!");
+  } else if (playerWeapon == "rock") {
+    if (computerWeapon == "paper") {
+      console.log("AI Wins!");
+    } else {
+      console.log("You Win!");
+    }
+  } else if (playerWeapon == "paper") {
+    if (computerWeapon == "scissors") {
+      console.log("AI Wins!");
+    } else {
+      console.log("You Win!");
+    }
+  } else if (playerWeapon == "scissors") {
+    if (computerWeapon == "rock") {
+      console.log("AI Wins!");
+    } else {
+      console.log("You Win!");
+    }
+  }
+};
+
+const showResult = function (playerWeapon, computerWeapon) {
   weaponLocker.style.display = "none";
   battleArena.style.display = "flex";
 
-  console.log(`Weapon Selected: ${playerWeapon}`);
-  document.getElementById("player-weapon").innerText = `${playerWeapon}`;
-  document.getElementById("AI-weapon").innerText = `${computerWeapon()}`;
+  document.getElementById(
+    "player-weapon"
+  ).innerText = `You selected: ${playerWeapon} `;
+  document.getElementById(
+    "AI-weapon"
+  ).innerText = `Computer selected: ${computerWeapon}`;
+
+  checkWinCondition(playerWeapon, computerWeapon);
 };
 
 const activateGame = function (e) {
@@ -42,7 +69,7 @@ const activateGame = function (e) {
 
   let playerWeapon = e.target.id;
 
-  showResult(playerWeapon);
+  showResult(playerWeapon, computerWeapon());
 };
 
 const resetGame = function (e) {
