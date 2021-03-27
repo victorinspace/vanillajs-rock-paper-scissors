@@ -38,10 +38,13 @@ body {
 
 .battle-arena {
   display: none;
+  display: flex;
+  justify-content: center;
 }
 
 #weapon-locker {
   display: flex;
+  justify-content: center;
 }
 
 .weapon-locker {
@@ -56,10 +59,9 @@ body {
   margin: 20px;
 }
 
-.show-weapon-selected {
-  border: 3px solid black;
-  max-width: 100px;
-  margin: 0 auto;
+.weapon-option {
+  padding: 10px;
+  margin: 0 10px;
 }
 
 .AI-selected {
