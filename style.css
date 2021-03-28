@@ -11,7 +11,7 @@ body {
   max-width: 700px;
   margin: auto;
   padding: 10px;
-  background-color: #eee;
+  background-color: #d2d2d2;
 }
 
 .reset-button {
@@ -36,7 +36,7 @@ body {
   font-style: italic;
 }
 
-.battle-arena {
+#battle-arena {
   display: none;
   display: flex;
   justify-content: center;
@@ -61,13 +61,23 @@ body {
 
 .weapon-option {
   padding: 10px;
-  margin: 0 10px;
+  margin: 0 20px;
 }
 
-.AI-selected {
+#player-weapon {
+  color: green;
+}
+
+#AI-weapon {
   color: blue;
 }
 
 #match-result {
   display: none;
+  background-color: #eee;
+  color: red;
+  text-align: center;
+  font-size: large;
+  font-weight: bold;
+  padding: 20px 0;
 }
