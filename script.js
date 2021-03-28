@@ -1,17 +1,12 @@
-// TODO:
-// - Remove global variables:
-//     - Use IFEE?
-
-const weaponOptions = {
-  rock: "rock",
-  paper: "paper",
-  scissors: "scissors",
-};
-
-const computerWeapon = function () {
+const generateWeaponAI = function () {
   let randomNumber = Math.floor(Math.random() * Math.floor(3));
 
-  console.log(randomNumber);
+  const weaponOptions = {
+    rock: "rock",
+    paper: "paper",
+    scissors: "scissors",
+  };
+
   switch (randomNumber) {
     case 1:
       return weaponOptions.rock;
@@ -25,40 +20,35 @@ const computerWeapon = function () {
 };
 
 const checkWinCondition = function (playerWeapon, computerWeapon) {
+  const matchResult = document.getElementById("match-result");
   matchResult.style.display = "block";
 
   if (playerWeapon == computerWeapon) {
     matchResult.innerText = "TIE!";
   } else if (playerWeapon == "rock") {
     if (computerWeapon == "paper") {
-      console.log("AI Wins!");
       matchResult.innerText = "AI Wins!";
     } else {
-      console.log("You Win!");
       matchResult.innerText = "You Win!";
     }
   } else if (playerWeapon == "paper") {
     if (computerWeapon == "scissors") {
-      console.log("AI Wins!");
       matchResult.innerText = "AI Wins!";
     } else {
-      console.log("You Win!");
       matchResult.innerText = "You Win!";
     }
   } else if (playerWeapon == "scissors") {
     if (computerWeapon == "rock") {
-      console.log("AI Wins!");
       matchResult.innerText = "AI Wins!";
     } else {
-      console.log("You Win!");
       matchResult.innerText = "You Win!";
     }
   }
 };
 
-const showResult = function (playerWeapon, computerWeapon) {
-  weaponLocker.style.display = "none";
-  battleArena.style.display = "flex";
+const showResult = function (playerWeapon, computerWeapon, weapons, arena) {
+  weapons.style.display = "none";
+  arena.style.display = "flex";
 
   document.getElementById(
     "player-weapon"
@@ -71,39 +61,28 @@ const showResult = function (playerWeapon, computerWeapon) {
 };
 
 const activateGame = function (e) {
+  const weaponLocker = document.getElementById("weapon-locker");
+  const battleArena = document.getElementById("battle-arena");
+
   e.preventDefault;
 
   let playerWeapon = e.target.id;
 
-  showResult(playerWeapon, computerWeapon());
+  showResult(playerWeapon, generateWeaponAI(), weaponLocker, battleArena);
 };
 
-const resetGame = function (e) {
+document.getElementById("rock").addEventListener("click", activateGame);
+
+document.getElementById("paper").addEventListener("click", activateGame);
+
+document.getElementById("scissors").addEventListener("click", activateGame);
+
+document.getElementById("reset-button").addEventListener("click", (e) => {
   e.preventDefault;
 
-  console.log("Game Reset");
-
-  if (weaponLocker.style.display === "none") {
-    weaponLocker.style.display = "flex";
-    battleArena.style.display = "none";
-    matchResult.style.display = "none";
+  if (document.getElementById("weapon-locker").style.display === "none") {
+    document.getElementById("weapon-locker").style.display = "flex";
+    document.getElementById("battle-arena").style.display = "none";
+    document.getElementById("match-result").style.display = "none";
   }
-};
-
-const rock = document.getElementById("rock");
-rock.addEventListener("click", activateGame);
-
-const paper = document.getElementById("paper");
-paper.addEventListener("click", activateGame);
-
-const scissors = document.getElementById("scissors");
-scissors.addEventListener("click", activateGame);
-
-const resetButton = document.getElementById("reset-button");
-resetButton.addEventListener("click", resetGame);
-
-const weaponLocker = document.getElementById("weapon-locker");
-
-const battleArena = document.getElementById("battle-arena");
-
-const matchResult = document.getElementById("match-result");
+});
