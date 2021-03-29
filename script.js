@@ -1,81 +1,59 @@
-const generateWeaponAI = function () {
-  let randomNumber = Math.floor(Math.random() * Math.floor(3));
-
-  const weaponOptions = {
-    rock: "rock",
-    paper: "paper",
-    scissors: "scissors",
-  };
-
-  switch (randomNumber) {
-    case 1:
-      return weaponOptions.rock;
-      break;
-    case 2:
-      return weaponOptions.paper;
-      break;
-    default:
-      return weaponOptions.scissors;
-  }
+const generateWeaponAI = () => {
+  const weaponOptions = ["rock", "paper", "scissors"];
+  return weaponOptions[Math.floor(Math.random() * weaponOptions.length)];
 };
 
-const checkWinCondition = function (playerWeapon, computerWeapon) {
+const youWin = (matchResult) => (matchResult.innerText = "You Win!");
+const AIWins = (matchResult) => (matchResult.innerText = "AI Wins!");
+
+const checkWinCondition = (playerWeapon, computerWeapon) => {
   const matchResult = document.getElementById("match-result");
   matchResult.style.display = "block";
 
-  if (playerWeapon == computerWeapon) {
-    matchResult.innerText = "TIE!";
-  } else if (playerWeapon == "rock") {
-    if (computerWeapon == "paper") {
-      matchResult.innerText = "AI Wins!";
-    } else {
-      matchResult.innerText = "You Win!";
-    }
-  } else if (playerWeapon == "paper") {
-    if (computerWeapon == "scissors") {
-      matchResult.innerText = "AI Wins!";
-    } else {
-      matchResult.innerText = "You Win!";
-    }
-  } else if (playerWeapon == "scissors") {
-    if (computerWeapon == "rock") {
-      matchResult.innerText = "AI Wins!";
-    } else {
-      matchResult.innerText = "You Win!";
-    }
+  switch (playerWeapon) {
+    case "rock":
+      if (computerWeapon === "paper") AIWins(matchResult);
+      if (computerWeapon === "scissors") youWin(matchResult);
+      break;
+    case "paper":
+      if (computerWeapon === "scissors") AIWins(matchResult);
+      if (computerWeapon === "rock") youWin(matchResult);
+      break;
+    case "scissors":
+      if (computerWeapon === "rock") AIWins(matchResult);
+      if (computerWeapon === "paper") youWin(matchResult);
+      break;
   }
+
+  playerWeapon == computerWeapon && (matchResult.innerText = "TIE!");
 };
 
-const showResult = function (playerWeapon, computerWeapon, weapons, arena) {
+const showResult = (playerWeapon, computerWeapon, weapons, arena) => {
   weapons.style.display = "none";
   arena.style.display = "flex";
 
-  document.getElementById(
-    "player-weapon"
-  ).innerText = `You selected: ${playerWeapon} `;
-  document.getElementById(
-    "AI-weapon"
-  ).innerText = `Computer selected: ${computerWeapon}`;
+  const playerChoice = document.getElementById("player-weapon");
+  playerChoice.innerText = `You selected: ${playerWeapon} `;
+
+  const AIChoice = document.getElementById("AI-weapon");
+  AIChoice.innerText = `Computer selected: ${computerWeapon}`;
 
   checkWinCondition(playerWeapon, computerWeapon);
 };
 
-const activateGame = function (e) {
+const activateGame = (e) => {
+  e.preventDefault;
+
   const weaponLocker = document.getElementById("weapon-locker");
   const battleArena = document.getElementById("battle-arena");
-
-  e.preventDefault;
 
   let playerWeapon = e.target.id;
 
   showResult(playerWeapon, generateWeaponAI(), weaponLocker, battleArena);
 };
 
-document.getElementById("rock").addEventListener("click", activateGame);
-
-document.getElementById("paper").addEventListener("click", activateGame);
-
-document.getElementById("scissors").addEventListener("click", activateGame);
+const weapons = document.querySelectorAll(".weapon");
+weapons.forEach((weapon) => weapon.addEventListener("click", activateGame));
 
 document.getElementById("reset-button").addEventListener("click", (e) => {
   e.preventDefault;
